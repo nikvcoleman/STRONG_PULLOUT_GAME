@@ -97,7 +97,8 @@ GOTO CODE_EXIT
 SET /P DIRECTORY=" PLEASE PASTE IN DESTINATION DIRECTORY TO PUT FILE: "
 MKDIR %DIRECTORY%%HOSTNAME%
 rem look for errors here something isnt right bout this command
-POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%GET_LOCAL_USERS.ps1"
+rem POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%GET_LOCAL_USERS.ps1" <---------this command is great nut it doesnt work all of the time we will implement wmic instead
+wmic useraccount get * >  C:\Users\ESSAdmin\Desktop\user_list.txt
 XCOPY C:\Users\ESSAdmin\Desktop\user_list.txt %DIRECTORY%%HOSTNAME%\USER_LIST_FOR_%HOSTNAME%.TXT
 DEL C:\Users\ESSAdmin\Desktop\user_list.txt
 GOTO CODE_EXIT
