@@ -96,6 +96,7 @@ GOTO CODE_EXIT
 :GET_USERS
 SET /P DIRECTORY=" PLEASE PASTE IN DESTINATION DIRECTORY TO PUT FILE: "
 MKDIR %DIRECTORY%%HOSTNAME%
+rem look for errors here something isnt right bout this command
 POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%GET_LOCAL_USERS.ps1"
 XCOPY C:\Users\ESSAdmin\Desktop\user_list.txt %DIRECTORY%%HOSTNAME%\USER_LIST_FOR_%HOSTNAME%.TXT
 DEL C:\Users\ESSAdmin\Desktop\user_list.txt
