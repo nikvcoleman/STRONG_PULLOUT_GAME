@@ -97,7 +97,7 @@ GOTO CODE_EXIT
 SET /P DIRECTORY=" PLEASE PASTE IN DESTINATION DIRECTORY TO PUT FILE: "
 MKDIR %DIRECTORY%%HOSTNAME%
 rem look for errors here something isnt right bout this command
-rem POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%GET_LOCAL_USERS.ps1" <---------this command is great nut it doesnt work all of the time we will implement wmic instead
+rem POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%GET_LOCAL_USERS.ps1" <---------This command is great but it doesnt work all of the time we will implement wmic instead
 wmic useraccount get * >  C:\Users\ESSAdmin\Desktop\user_list.txt
 XCOPY C:\Users\ESSAdmin\Desktop\user_list.txt %DIRECTORY%%HOSTNAME%\USER_LIST_FOR_%HOSTNAME%.TXT
 DEL C:\Users\ESSAdmin\Desktop\user_list.txt
@@ -107,7 +107,8 @@ REM WE SHOULD ADD AN OPTION FOR WORKSTATIONS OR SERVERS SINCE THIS COMMAND WORKS
 :GET_APPLICATIONS
 SET /P DIRECTORY=" PLEASE PASTE IN DESTINATION DIRECTORY TO PUT FILE: "
 MKDIR %DIRECTORY%%HOSTNAME%
-POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%LIST_APPLICATIONS.ps1"
+WMIC PRODUCT GET * > C:\Users\ESSAdmin\Desktop\installed_programs.txt
+REM POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%LIST_APPLICATIONS.ps1"
 XCOPY C:\Users\ESSAdmin\Desktop\installed_programs.txt %DIRECTORY%%HOSTNAME%\APPLICATION_LIST_FOR_%HOSTNAME%.TXT
 DEL C:\Users\ESSAdmin\Desktop\installed_programs.txt
 GOTO CODE_EXIT
@@ -126,7 +127,8 @@ REM POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%GET_LOCAL_USERS.ps1"
 wmic useraccount get * >  C:\Users\ESSAdmin\Desktop\user_list.txt
 XCOPY C:\Users\ESSAdmin\Desktop\user_list.txt %DIRECTORY%%HOSTNAME%\USER_LIST_FOR_%HOSTNAME%.TXT
 DEL C:\Users\ESSAdmin\Desktop\user_list.txt
-POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%LIST_APPLICATIONS.ps1"
+REM POWERSHELL -ExecutionPolicy Bypass -File "%DIRECTORY%LIST_APPLICATIONS.ps1" <-----THIS IS REPLACED BY THE WMIC COMMAND BELOW AS IT WORKS ON BOTH SERVERS AND WORKSTATIONS AND GIVES MORE INFORMATION
+WMIC PRODUCT GET * > C:\Users\ESSAdmin\Desktop\installed_programs.txt
 XCOPY C:\Users\ESSAdmin\Desktop\installed_programs.txt %DIRECTORY%%HOSTNAME%\APPLICATION_LIST_FOR_%HOSTNAME%.TXT
 DEL C:\Users\ESSAdmin\Desktop\installed_programs.txt
 GOTO CODE_EXIT
