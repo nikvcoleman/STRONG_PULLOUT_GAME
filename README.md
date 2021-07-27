@@ -11,3 +11,6 @@
 
 ### REMEMBER TO RUN THIS SCRIPT AS AN ADMIN<br>
 ### SET THE DIRECTORY FOR THE FILES TO GO TO AS THE CURRENT DRIVE LETTER OF THE USB YOU ARE RUNNING THE SCRIPT FROM
+
+#### **"GET_LOCAL_USERS.PS1"** and **"LIST_APPLICATIONS.PS1"** are depreciated parts of the script as of 07/27/2021.<br>
+<p>The underlying scripts themselves still work if you would like to use them please feel free to use or modify them to your liking. 
