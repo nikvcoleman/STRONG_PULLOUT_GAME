@@ -20,8 +20,8 @@ ECHO *
 ECHO *                                                                                                           
 ECHO *                                                                                                           
 ECHO **************************************************************************************************************
-REM THIS WAITS FOR 5 SECONDS TO MAKE SURE  WHOEVER THE FUCK USES THIS WHEN IM GONE CAN  SEE MY FUCKING NAME AND KNOW I MADE THIS SCRIPT.
-TIMEOUT /T 5
+REM THIS WAITS FOR 10 SECONDS TO MAKE SURE  WHOEVER THE FUCK USES THIS WHEN IM GONE CAN  SEE MY FUCKING NAME AND KNOW I MADE THIS SCRIPT.
+TIMEOUT /T 10
 REM CLEAR THE SCREEN AGAIN
 CLS
 REM THIS IS ANOTHER SIMPLE MENU. I SHOULD PROBABLY ADD ERROR CATCHES AT SOME POINT BUT I WROTE THIS SCRIPT SO I KNOW HOW TO USE IT WITHOUT BREAKING IT.
@@ -58,13 +58,13 @@ IF /I %USER_INPUT%==10 (GOTO CODE_EXIT)
 :AUDIT_POLICY
 SET /P DIRECTORY=" PLEASE PASTE IN DESTINATION DIRECTORY TO PUT FILE: "
 MKDIR %DIRECTORY%%HOSTNAME%		
-auditpol /backup /file:%DIRECTORY%%HOSTNAME%\auditpolicy.csv
+auditpol /backup /file:%DIRECTORY%%HOSTNAME%\audit.inf
 GOTO CODE_EXIT
 
 :SECURITY_POLICY
 SET /P DIRECTORY=" PLEASE PASTE IN DESTINATION DIRECTORY TO PUT FILE: "
 MKDIR %DIRECTORY%%HOSTNAME% 
-secedit /export /cfg %DIRECTORY%%HOSTNAME%\securitypolicy.inf
+secedit /export /cfg %DIRECTORY%%HOSTNAME%\security.inf
 GOTO CODE_EXIT
 
 :LOCAL_POLICY
@@ -116,8 +116,8 @@ GOTO CODE_EXIT
 :ALL
 SET /P DIRECTORY=" PLEASE PASTE IN DESTINATION DIRECTORY TO PUT FILE: "
 mkdir %DIRECTORY%%HOSTNAME% 
-auditpol /backup /file:%DIRECTORY%%HOSTNAME%\auditpolicy.csv
-secedit /export /cfg %DIRECTORY%%HOSTNAME%\securitypolicy.inf
+auditpol /backup /file:%DIRECTORY%%HOSTNAME%\audit.inf
+secedit /export /cfg %DIRECTORY%%HOSTNAME%\security.inf
 XCOPY C:\Windows\System32\GroupPolicy\* %DIRECTORY%%HOSTNAME%\PolicyObjects /E /H /C /I
 NETSH ADVFIREWALL EXPORT %DIRECTORY%%HOSTNAME%\firewall-policy.wfw
 MANAGE-BDE -PROTECTORS C: -GET > %DIRECTORY%%HOSTNAME%\BITLOCKER_INFO_FOR_C_%HOSTNAME%.TXT
